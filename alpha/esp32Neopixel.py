@@ -7,10 +7,10 @@ import math
 import time
 
 #Enter the required information to connect to the Wi-Fi network
-SSID = "ibrahim tatlıses"
-PASSWORD = "melih123"
+SSID = "yourwifiname"
+PASSWORD = "yourwifipassword"
 
-# Wi-Fi ağına bağlan
+# Connect wifi network
 sta_if = network.WLAN(network.STA_IF)
 sta_if.active(True)
 sta_if.connect(SSID, PASSWORD)
@@ -20,7 +20,7 @@ while not sta_if.isconnected():
     pass
 
 # Print IP address after connecting
-print("Bağlandı. IP adresi:", sta_if.ifconfig()[0])
+print("Connected. IP address:", sta_if.ifconfig()[0])
 
 #Define the pin number and number of LEDs in your NeoPixel strip
 pin_num = 16
@@ -47,7 +47,7 @@ def handle_request(request):
     #Generate HTTP response
     response = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n"
     response += "<html><body>"
-    response += "<h1>LED Durumu: {}</h1>".format("Açık" if led_on else "Kapalı")
+    response += "<h1>LED Status: {}</h1>".format("ON" if led_on else "OFF")
     response += "<a href='/on'><button>Aç</button></a>"
     response += "<a href='/off'><button>Kapat</button></a>"
     response += "</body></html>"
@@ -58,7 +58,7 @@ def handle_request(request):
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((IP_ADDRESS, PORT))
 s.listen(5)
-print("Web sunucusu çalışıyor. IP adresi:", IP_ADDRESS, "Port:", PORT)
+print("Web server is working. IP address:", IP_ADDRESS, "Port:", PORT)
 
 offset=0.0
 

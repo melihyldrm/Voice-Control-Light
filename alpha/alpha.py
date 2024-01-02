@@ -58,7 +58,7 @@ def perform_action(action, query):
             webbrowser.open('http://192.168.144.73/off')
 
 if __name__ == "__main__":
-    speak("konus")
+    speak("speak")
     while True:
         command = take_command()
         action, query = parse_command(command)
